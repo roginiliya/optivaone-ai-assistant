@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7f9fc"><title>OptivaOne — Strategic AI Copilot</title>
+<style>
+:root{--bg:#f6f8fb;--panel:#fff;--ink:#172033;--muted:#778195;--line:#e4e8ef;--blue:#1761ed;--blue2:#eaf1ff;--shadow:0 8px 30px #15284a0b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+body.dark{--bg:#101725;--panel:#182235;--ink:#eef3ff;--muted:#a3afc3;--line:#2b3850;--blue2:#1d3158;--shadow:0 8px 30px #0003}
+header{height:76px;background:var(--panel);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(22px,calc((100vw - 1120px)/2));position:sticky;top:0;z-index:3}
+.brand{display:flex;align-items:center;gap:12px;font-weight:750;font-size:17px}.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(145deg,#082b70,#1761ed);display:grid;place-items:center;color:white;font-size:19px;box-shadow:0 5px 14px #1761ed33}
+.headright{display:flex;align-items:center;gap:12px}.pill,.iconbtn{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:13px;padding:10px 14px}.pill{color:#2456a7;font-weight:650;background:var(--blue2)}button{cursor:pointer;font:inherit}.iconbtn{font-size:18px}
+main{max-width:1120px;margin:28px auto;padding:0 22px}.nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px}.navleft{display:flex;gap:10px}.nav button{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:11px 17px;color:var(--ink)}
+.eyebrow{font-size:12px;letter-spacing:5px;color:#2860bd;font-weight:800;margin-bottom:10px}.hero h1{font-size:clamp(28px,4vw,42px);line-height:1.12;letter-spacing:-1.5px;margin:0 0 10px}.hero p{color:var(--muted);font-size:17px;margin:0 0 28px}
+.workspace{background:var(--panel);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:26px;max-width:920px;margin:auto}
+.welcome{text-align:center;padding:18px 0 20px}.spark{width:68px;height:68px;margin:0 auto 17px;border:1px solid #d7e4fa;background:var(--blue2);border-radius:22px;display:grid;place-items:center;font-size:32px;color:var(--blue)}.welcome h2{font-size:25px;margin:0 0 3px}.welcome p{color:var(--muted);margin:0}
+.tabs{display:flex;justify-content:center;gap:5px;margin:22px auto 20px;padding:4px;border:1px solid var(--line);border-radius:14px;width:max-content;max-width:100%;background:var(--bg)}.tab{border:0;background:transparent;color:var(--muted);padding:9px 16px;border-radius:10px}.tab.active{background:var(--panel);color:#2456a7;box-shadow:0 1px 4px #0001}
+.suggestions{display:grid;gap:10px}.suggestion{text-align:left;border:1px solid var(--line);border-radius:15px;padding:16px 18px;background:var(--bg);color:var(--ink);display:flex;justify-content:space-between;gap:15px;align-items:center}.suggestion:hover{border-color:#a9c4fa}.arrow{color:#8b98aa;font-size:20px}
+.persona-wrap{border-top:1px solid var(--line);margin-top:28px;padding-top:20px}.persona-label{color:var(--muted);font-size:13px;margin-bottom:10px}.personas{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.persona{padding:12px 8px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font-size:13px}.persona.active{background:var(--blue);color:white;border-color:var(--blue)}
+.chat{display:none;max-height:420px;overflow:auto;padding:5px 2px 15px;gap:14px;flex-direction:column}.bubble{max-width:86%;padding:13px 16px;border-radius:17px;white-space:pre-wrap;overflow-wrap:anywhere}.bubble.user{align-self:flex-end;background:var(--blue);color:white;border-bottom-right-radius:5px}.bubble.assistant{align-self:flex-start;background:var(--bg);border:1px solid var(--line);border-bottom-left-radius:5px}.typing{color:var(--muted);font-size:13px}
+.composer{display:flex;gap:10px;margin-top:18px}.composer textarea{flex:1;resize:vertical;min-height:58px;max-height:140px;border:1px solid var(--line);border-radius:15px;background:var(--panel);color:var(--ink);padding:16px;font:inherit;outline:none}.composer textarea:focus{border-color:#8eb2fa}.send{border:0;border-radius:15px;background:#1761ed;color:#fff;padding:0 25px;font-weight:700}.send:disabled{opacity:.55;cursor:not-allowed}.hint{text-align:center;color:var(--muted);font-size:12px;margin-top:12px}.notice{color:var(--muted);font-size:12px;margin-top:8px;text-align:center}
+@media(max-width:650px){header{height:66px;padding:0 15px}.pill{display:none}main{padding:0 13px;margin:20px auto}.workspace{padding:16px;border-radius:18px}.nav{margin-bottom:24px}.hero p{font-size:15px}.personas{grid-template-columns:repeat(2,1fr)}.composer{gap:7px}.send{padding:0 17px}.tabs{width:100%}.tab{padding:8px 9px;font-size:12px}.bubble{max-width:95%}}
+</style></head>
+<body>
+<header><div class="brand"><div class="logo">✦</div><span>OptivaOne</span></div><div class="headright"><button class="iconbtn" id="theme" aria-label="Toggle theme">☼</button><span class="pill">AI Copilot</span><button class="iconbtn" id="clear" title="New chat">＋</button></div></header>
+<main>
+<div class="nav"><div class="navleft"><button onclick="window.location.reload()">← Back</button><button onclick="window.scrollTo({top:0,behavior:'smooth'})">⌂ Home</button></div><span style="color:var(--muted);font-size:13px">● AI Assistant</span></div>
+<section class="hero"><div class="eyebrow">▣ 06 · STRATEGIC AI COPILOT</div><h1>Ask anything about your rivals.</h1><p>Get practical ideas for your competitors, content strategy, and growth.</p></section>
+<section class="workspace">
+<div class="welcome" id="welcome"><div class="spark">✧</div><h2>Start with a question</h2><p>Choose a prompt or type your own question to begin.</p>
+<div class="tabs"><button class="tab active" data-set="standard">Standard Intelligence</button><button class="tab" data-set="zenith">Zenith Dynamics 599 vs Rivals</button></div>
+</div>
+<div class="chat" id="chat" aria-live="polite"></div>
+<div class="suggestions" id="suggestions">
+<button class="suggestion" data-prompt="Why might a competitor be growing faster than my business? Give me a framework to investigate using public information.">Why might a competitor be growing faster than my business?<span class="arrow">→</span></button>
+<button class="suggestion" data-prompt="Create next week's content calendar to help my brand stand out from competitors.">Suggest next week's content calendar to stand out from rivals.<span class="arrow">→</span></button>
+<button class="suggestion" data-prompt="Help me develop evidence-based hypotheses about a competitor's next campaign theme and posting time.">Suggest ways to anticipate a competitor's next campaign.<span class="arrow">→</span></button>
+<button class="suggestion" data-prompt="Give me a framework to compare content formats across competitors and identify what performs best.">Which content formats should I compare across competitors?<span class="arrow">→</span></button>
+</div>
+<div class="persona-wrap"><div class="persona-label">Persona: <strong id="personaName" style="color:var(--ink)">Strategic Advisor</strong></div><div class="personas">
+<button class="persona active" data-persona="Strategic Advisor">Strategic<br>Advisor</button><button class="persona" data-persona="Growth Marketer">Growth<br>Marketer</button><button class="persona" data-persona="Vulnerability Hunter">Vulnerability<br>Hunter</button><button class="persona" data-persona="Executive Brief">Executive<br>Brief</button>
+</div></div>
+<form class="composer" id="form"><textarea id="prompt" placeholder="Ask about publishing times, content ideas, competitor strategy..." required></textarea><button class="send" id="send">Send ↗</button></form>
+<div class="hint">Enter to send · Shift + Enter for a new line</div><div class="notice">AI can make mistakes. Verify important business decisions with reliable information.</div>
+</section></main>
+<script>
+const $=s=>document.querySelector(s), chat=$('#chat'), promptBox=$('#prompt');
+let persona='Strategic Advisor', messages=[], busy=false;
+function addBubble(role,text){const el=document.createElement('div');el.className='bubble '+role;el.textContent=text;chat.appendChild(el);chat.scrollTop=chat.scrollHeight;return el}
+function beginChat(){ $('#welcome').style.display='none';$('#suggestions').style.display='none';chat.style.display='flex';}
+function setPersona(name){persona=name;$('#personaName').textContent=name;document.querySelectorAll('.persona').forEach(b=>b.classList.toggle('active',b.dataset.persona===name))}
+document.querySelectorAll('.persona').forEach(b=>b.addEventListener('click',()=>setPersona(b.dataset.persona)));
+document.querySelectorAll('.suggestion').forEach(b=>b.addEventListener('click',()=>{promptBox.value=b.dataset.prompt;sendMessage()}));
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');if(b.dataset.set==='zenith')promptBox.placeholder='Ask about Zenith Dynamics 599 and its competitors...';else promptBox.placeholder='Ask about publishing times, content ideas, competitor strategy...'}));
+$('#theme').addEventListener('click',()=>document.body.classList.toggle('dark'));
+$('#clear').addEventListener('click',()=>{messages=[];chat.innerHTML='';chat.style.display='none';$('#welcome').style.display='block';$('#suggestions').style.display='grid';});
+$('#form').addEventListener('submit',e=>{e.preventDefault();sendMessage()});
+promptBox.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage()}});
+async function sendMessage(){
+ const text=promptBox.value.trim();if(!text||busy)return;
+ beginChat();promptBox.value='';messages.push({role:'user',content:text});addBubble('user',text);
+ busy=true;$('#send').disabled=true;const loading=addBubble('assistant','Thinking…');
+ try{
+  const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages,persona})});
+  const data=await r.json();if(!r.ok)throw new Error(data.error||'Request failed');
+  loading.textContent=data.reply;messages.push({role:'assistant',content:data.reply});
+ }catch(err){loading.textContent='⚠ '+err.message;}
+ finally{busy=false;$('#send').disabled=false;promptBox.focus();chat.scrollTop=chat.scrollHeight;}
+}
+</script></body></html>
